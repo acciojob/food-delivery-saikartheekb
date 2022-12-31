@@ -29,8 +29,6 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-	@Autowired
-	private OrderRepository orderRepository;
 
 	@GetMapping(path="/{id}")
 	public OrderDetailsResponse getOrder(@PathVariable String id) throws Exception{
@@ -47,7 +45,7 @@ public class OrderController {
 		
 	@PutMapping(path="/{id}")
 	public OrderDetailsResponse updateOrder(@PathVariable String id, @RequestBody OrderDetailsRequestModel order) throws Exception{
-		OrderDto orderDto = OrderConverter.convertRequestDtoToOrderDto(order)
+		OrderDto orderDto = OrderConverter.convertRequestDtoToOrderDto(order);
 		orderDto = orderService.updateOrderDetails(id, orderDto);
 		return OrderConverter.convertOrderDtoToResponseDto(orderDto);
 	}
